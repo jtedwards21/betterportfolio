@@ -12,13 +12,13 @@ var Projects = React.createClass({
       }
     });
 
-    var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 300})
+    var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 500})
 	.setPin("#Pin1")
 	.addTo(controller);
-    var sceneTwo = new ScrollMagic.Scene({triggerElement: "#trigger2", duration:300})
+    var sceneTwo = new ScrollMagic.Scene({triggerElement: "#trigger2", duration:500})
 	.setPin("#Pin2")
 	.addTo(controller);
-    var sceneThree = new ScrollMagic.Scene({triggerElement: "#trigger3", duration:300})
+    var sceneThree = new ScrollMagic.Scene({triggerElement: "#trigger3", duration:500})
 	.setPin("#Pin3")
 	.addTo(controller);
 
@@ -26,17 +26,24 @@ var Projects = React.createClass({
   componentDidMount(){
     this.makeSlides();
   },
+  showAbout(){
+    this.props.showAbout();
+  },
   render() {
     
     return (
-      <div className="main">
+      <div className="projects">
 　　　　　　　　<section className="intro-page">
+	  
 	</section>
 	<section className="panel">
         　　<div className="spacer s2"></div>
           <div id="trigger1" className="spacer s0"></div>
 	  <div id="pin1" className="pin">
-		<div className="pin-box blue">One</div>
+		<div className="pin-box">
+		　　<div className="project-title">Pomodoro</div>
+		  <img src="public/img/project-one.png" className="portfolio-image" />
+	　　　　　　　　</div>
 	  </div>
         　　<div classNmae="spacer s2"></div>
 	</section>
@@ -44,7 +51,10 @@ var Projects = React.createClass({
             <div className="spacer s2"></div>
           <div id="trigger2" className="spacer s0"></div>
 	  <div id="pin2" className="pin">
-		<div className="pin-box blue">One</div>
+		<div className="pin-box">
+		　　<div className="project-title">Calculator</div>
+		  <img src="public/img/project-two.png" className="portfolio-image" />
+	　　　　　　　　</div>
 	  </div>
         　　<div classNmae="spacer s2"></div>
 	</section>
@@ -52,7 +62,10 @@ var Projects = React.createClass({
             <div className="spacer s2"></div>
           <div id="trigger3" className="spacer s0"></div>
 	  <div id="pin3" className="pin">
-		<div className="pin-box blue">One</div>
+		<div className="pin-box">
+		　　<div className="project-title">Dogs</div>
+		  <img src="public/img/project-three.png" className="portfolio-image" />
+	　　　　　　　　</div>
 	  </div>
         　　<div classNmae="spacer s2"></div>
 	</section>
@@ -64,61 +77,77 @@ var Projects = React.createClass({
 
 var Portfolio = React.createClass({
 　　getInitialState(){
-	return{about: false}
+	return{about: false, page: "main"}
+  },
+  handleArrowClick(){
+    switch(this.state.page){
+      case "main":
+        this.setState({page: "projects"});
+	break;
+      case "projects":
+	this.setState({page: "main"});
+	break;
+    }
+  },
+  showAbout(){
+    console.log("show About");
   },
   render() {
-    return(
-　　　　<div className="another-container">
-    <div className="portfolio-page">	
-      <div className="main-container">
-        <ReactCSSTransitionGroup transitionName="dog" transitionEnterTimeout={500}>
-        {(this.main) ? <Main /> : <Projects />}
-        </ReactCSSTransitionGroup>
-      </div>
-    </div>
-    <div className="down-arrow"　onClick={function(){console.log('g');}}><i className="fa fa-arrow-down"></i></div>
-    </div>
-    )
+    var content;
+    
+    switch(this.state.page){
+      case "main":
+        content = <Main showAbout={this.showAbout} about={this.state.about} />;
+	break;
+      case "projects":
+	content = <Projects showAbout={this.showAbout} />;
+	break;
+    }
+
+    return(<div id="portfolio">{content}<div className="down-arrow"　onClick={this.handleArrowClick}><i className="fa fa-arrow-down"></i></div></div>)
   }
 
 })
-
-
-
 
 var Main = React.createClass({
-　　getInitialState(){
-	return{about: false}
+  getInitialState(){
+    return{}
   },
-  /*showAbout(){
-      if(this.state.about == false){
-	this.setState({about: true});
-	$(".background").animate({
-          opacity: .5
-        }, 1000);
-	$(".about").show("slow");
-      } else {
-	this.setState(about: false);
-	$(".background").animate({
-          opacity: 0
-        }, 1000);
-	$(".about").hide("slow");
-      }
-  },*/
   render(){
-    return (
-      <div className="main">
-	<div className="left-vertical-text"><span onClick={showAbout.bind(this)}>{(this.about) ?　"close" : "about"}</span></div>
-      <div className="right-vertical-text"><span onClick={function(){window.location.href='mailto:1478282482@qq.com';}}>1478282482@qq.com</span></div>
-	<div className="name"　onClick={function(){console.log('d')}}>Joshua Edwards</div>
-	<div className="post">DIGITAL DESIGNER</div>
-      </div>
-    );
+     return(
+     <div className="main">
+	<div className="left-vertical-text"><span onClick={this.props.showAbout}>{(this.props.about) ?　"close" : "about"}</span></div>
+	<div className="right-vertical-text"><span onClick={function(){window.location.href='mailto:1478282482@qq.com';}}>1478282482@qq.com</span></div>
+	<div className="main-text-container">
+	  <div className="name"　onClick={function(){console.log('d')}}>Joshua Edwards</div>
+	  <div className="post">DIGITAL DESIGNER</div>
+	</div>
+     </div>
+	)
   }
 })
 
 
+
+
+var About = React.createClass({
+　　getInitialState(){
+	return{}
+  },
+  render(){
+	return(
+	  <div className="about">
+            <div className="title">Hello,</div>
+            <div className="sub-title">we are a web development firm in blablabla</div>
+            <div className="plain-text">Here are some of our awards and other stuff</div>
+          </div>
+        )
+  }
+
+
+})
+
 ReactDOM.render(
-  <Projects />,
+  <Portfolio />,
   document.getElementById('container')
 )
