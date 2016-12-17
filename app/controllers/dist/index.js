@@ -9,15 +9,19 @@ var Projects = React.createClass({
       <div className="main">
 	<section className="project">
 	  <div className="spacer s2"></div>
-	  <div id="pin1">
-	    <div className="title">Pomodoro Clock</div>
+	  <div className="project-pin" id="pin1">
+	    <div className="site-image" id="site-one">
+	      <div className="project-title">Pomodoro Clock</div>
+	      <img className="project-image" src="public/img/project-one.png" />
+	    </div>
 	  </div>
 	  <div className="spacer s2"></div>
 	</section>
 	<section className="project">
 	  <div className="spacer s2"></div>
-	  <div id="pin1">
-	    <div className="title">Calculator</div>
+	  <div className="project-pin" id="pin2">
+	    <div className="project-title">Calculator</div>
+	    <img className="project-image" src="public/img/project-two.png" />
 	  </div>
 	  <div className="spacer s2"></div>
 	</section>
@@ -26,6 +30,7 @@ var Projects = React.createClass({
       </div>
     );
   }
+});
 
 
 var Portfolio = React.createClass({
@@ -47,7 +52,7 @@ var Portfolio = React.createClass({
     )
   }
 
-
+})
 
 
 
@@ -56,22 +61,21 @@ var Main = React.createClass({
 　　getInitialState(){
 	return{about: false}
   },
-  showAbout(){
-    console.log('g');
+  /*showAbout(){
       if(this.state.about == false){
-	this.setState(about: true);
+	this.setState({about: true});
 	$(".background").animate({
           opacity: .5
         }, 1000);
-	JQuery(".about").show("slow");
+	$(".about").show("slow");
       } else {
 	this.setState(about: false);
-	JQuery(".background").animate({
+	$(".background").animate({
           opacity: 0
         }, 1000);
-	JQuery(".about").hide("slow");
+	$(".about").hide("slow");
       }
-  },
+  },*/
   render(){
     return (
       <div className="main">
@@ -86,6 +90,6 @@ var Main = React.createClass({
 
 
 ReactDOM.render(
-  <Projecsts />,
+  <Projects />,
   document.getElementById('container')
 )
