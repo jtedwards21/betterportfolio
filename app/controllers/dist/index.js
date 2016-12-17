@@ -91,6 +91,18 @@ var Portfolio = React.createClass({
   },
   closeAbout(){
     console.log('close');
+    this.setState({about:false});
+    $("#background").css("z-index","0");
+    $("#background").animate({
+	opacity: 0
+    }, 1000);
+　　　　
+    $("#hidden-left").css("z-index","0");
+    $("#hidden-left").animate({
+	opacity: 0
+    }, 1000);
+    $("#about").css("z-index", "0");
+    $("#about").hide(1000)
   },
   showAbout(){
     console.log("show About");
@@ -193,8 +205,10 @@ var About = React.createClass({
 	return(
 	  <div id="about">
             <div className="title">Hello,</div>
-            <div className="sub-title">we are a web development firm in blablabla</div>
-            <div className="plain-text">Here are some of our awards and other stuff</div>
+            <div className="text-container">
+            <span className="sub-title">we are a web development firm</span>
+            <span className="plain-text">Here are some of our awards and other stuff</span>
+	    </div>
           </div>
         )
   }

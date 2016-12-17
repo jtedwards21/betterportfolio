@@ -10,6 +10,12 @@ body {
   position: absolute;
   z-index: 0;
   display: none;
+  margin-top: 20vh;
+  margin-left: 10vw;
+}
+
+.text-container {
+  display: block;
 }
 
 
@@ -183,6 +189,7 @@ body {
   font-size: 2em;
   font-family: Gza;
   color: white;
+  display: block;
 }
 
 .column-title {
