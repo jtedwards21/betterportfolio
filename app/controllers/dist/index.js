@@ -4,29 +4,58 @@ var Projects = React.createClass({
 　　getInitialState(){
 	return{}
   },
+  makeSlides(){
+    
+    var controller = new ScrollMagic.Controller({
+      globalSceneOptions: {
+	 triggerHook: 'onLeave'
+      }
+    });
+
+    var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 300})
+	.setPin("#Pin1")
+	.addTo(controller);
+    var sceneTwo = new ScrollMagic.Scene({triggerElement: "#trigger2", duration:300})
+	.setPin("#Pin2")
+	.addTo(controller);
+    var sceneThree = new ScrollMagic.Scene({triggerElement: "#trigger3", duration:300})
+	.setPin("#Pin3")
+	.addTo(controller);
+
+  },
+  componentDidMount(){
+    this.makeSlides();
+  },
   render() {
+    
     return (
       <div className="main">
-	<section className="project">
-	  <div className="spacer s2"></div>
-	  <div className="project-pin" id="pin1">
-	    <div className="site-image" id="site-one">
-	      <div className="project-title">Pomodoro Clock</div>
-	      <img className="project-image" src="public/img/project-one.png" />
-	    </div>
-	  </div>
-	  <div className="spacer s2"></div>
+　　　　　　　　<section className="intro-page">
 	</section>
-	<section className="project">
-	  <div className="spacer s2"></div>
-	  <div className="project-pin" id="pin2">
-	    <div className="project-title">Calculator</div>
-	    <img className="project-image" src="public/img/project-two.png" />
+	<section className="panel">
+        　　<div className="spacer s2"></div>
+          <div id="trigger1" className="spacer s0"></div>
+	  <div id="pin1" className="pin">
+		<div className="pin-box blue">One</div>
 	  </div>
-	  <div className="spacer s2"></div>
+        　　<div classNmae="spacer s2"></div>
 	</section>
-	<script>
-	</script>
+	<section className="panel">
+            <div className="spacer s2"></div>
+          <div id="trigger2" className="spacer s0"></div>
+	  <div id="pin2" className="pin">
+		<div className="pin-box blue">One</div>
+	  </div>
+        　　<div classNmae="spacer s2"></div>
+	</section>
+	<section className="panel">
+            <div className="spacer s2"></div>
+          <div id="trigger3" className="spacer s0"></div>
+	  <div id="pin3" className="pin">
+		<div className="pin-box blue">One</div>
+	  </div>
+        　　<div classNmae="spacer s2"></div>
+	</section>
       </div>
     );
   }
