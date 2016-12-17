@@ -89,15 +89,28 @@ var Portfolio = React.createClass({
 	break;
     }
   },
+  closeAbout(){
+    console.log('close');
+  },
   showAbout(){
     console.log("show About");
+    this.setState({about:true});
     $("#background").css("z-index","3");
     $("#background").animate({
-	opacity: .5
+	opacity: .9
     }, 1000);
+　　　　
+    $("#hidden-left").css("z-index","4");
+    $("#hidden-left").animate({
+	opacity: 1
+    }, 1000);
+    $("#about").css("z-index", "4");
+    $("#about").show(1000)
   },
   render() {
     var content;
+    var leftText = <LeftText closeAbout={this.closeAbout} />;
+    var about = <About /> 
     
     switch(this.state.page){
       case "main":
@@ -108,9 +121,27 @@ var Portfolio = React.createClass({
 	break;
     }
 
-    return(<div id="portfolio">{content}</div>)
+
+    return(<div>
+      <div id="background"></div>
+      <div id="portfolio">
+　　　　     {content}
+      </div>
+      {leftText}
+      {about}
+    </div>
+    )
   }
 
+})
+
+var LeftText = React.createClass({
+  getInitialState(){
+    return {}
+  },
+  render(){
+    return(<div id="hidden-left" className="left-vertical-text hidden" onClick={this.props.closeAbout}>close</div>)
+  }
 })
 
 var Main = React.createClass({
@@ -124,9 +155,22 @@ var Main = React.createClass({
     window.location.href='mailto:1478282482@qq.com';
   },
   render(){
+     var leftText = ""
+     var leftClick;
+     switch(this.props.about){
+       case true:
+	 leftText = "";
+	 leftClick = this.props.showAbout;
+	 break;
+       case false:
+	　leftText = "about";
+	 leftClick = this.props.showAbout;
+	 break;
+     }
      return(
      <div className="main">
-	<div className="left-vertical-text"><span onClick={this.props.showAbout}>{(this.props.about) ?　"close" : "about"}</span></div>
+	
+    　　　　<div className="left-vertical-text"><span onClick={leftClick}>{leftText}</span></div>
 	<div className="right-vertical-text"><span onClick={this.emailClick}>1478282482@qq.com</span></div>
 	<div className="main-text-container">
 	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
@@ -147,7 +191,7 @@ var About = React.createClass({
   },
   render(){
 	return(
-	  <div className="about">
+	  <div id="about">
             <div className="title">Hello,</div>
             <div className="sub-title">we are a web development firm in blablabla</div>
             <div className="plain-text">Here are some of our awards and other stuff</div>
