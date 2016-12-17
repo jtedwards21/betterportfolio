@@ -34,7 +34,9 @@ var Projects = React.createClass({
     return (
       <div className="projects">
 　　　　　　　　<section className="intro-page">
-	  
+	  <div>
+	    Please Enjoy the portfolio page
+	  </div>
 	</section>
 	<section className="panel">
         　　<div className="spacer s2"></div>
@@ -119,9 +121,41 @@ var Portfolio = React.createClass({
     $("#about").css("z-index", "4");
     $("#about").show(1000)
   },
+  checkLeftStyle(){
+    if(this.state.page == "projects"){return "white"}
+    if(this.state.page == "main" && this.state.about == false){return "black"}
+    if(this.state.page == "main" && this.state.about == true){return "white"}
+  },
   render() {
+
+    
+     var leftText = "about";
+     var leftClick;
+     var leftStyle;
+     switch(this.state.about){
+       case true:
+	 leftText = "close";
+	 leftClick = this.closeAbout;
+	 break;
+       case false:
+	　leftText = "about";
+	 leftClick = this.showAbout;
+	 break;
+     }
+     switch(this.checkLeftStyle()){
+	case "white":
+          leftStyle = {color: "white"}
+	  break;
+	case "black":
+	  leftStyle = {color: "black"}
+	  break;
+     }
+
+   
+     
+    console.log(this.state.about);
     var content;
-    var leftText = <LeftText closeAbout={this.closeAbout} />;
+    var leftButton = <LeftText closeAbout={leftClick} leftText={leftText} leftStyle={leftStyle} />;
     var about = <About /> 
     
     switch(this.state.page){
@@ -139,7 +173,7 @@ var Portfolio = React.createClass({
       <div id="portfolio">
 　　　　     {content}
       </div>
-      {leftText}
+      {leftButton}
       {about}
     </div>
     )
@@ -152,7 +186,7 @@ var LeftText = React.createClass({
     return {}
   },
   render(){
-    return(<div id="hidden-left" className="left-vertical-text hidden" onClick={this.props.closeAbout}>close</div>)
+    return(<div id="left" style={this.props.leftStyle} className="left-vertical-text" onClick={this.props.closeAbout}>{this.props.leftText}</div>)
   }
 })
 
@@ -167,22 +201,9 @@ var Main = React.createClass({
     window.location.href='mailto:1478282482@qq.com';
   },
   render(){
-     var leftText = ""
-     var leftClick;
-     switch(this.props.about){
-       case true:
-	 leftText = "";
-	 leftClick = this.props.showAbout;
-	 break;
-       case false:
-	　leftText = "about";
-	 leftClick = this.props.showAbout;
-	 break;
-     }
      return(
      <div className="main">
 	
-    　　　　<div className="left-vertical-text"><span onClick={leftClick}>{leftText}</span></div>
 	<div className="right-vertical-text"><span onClick={this.emailClick}>1478282482@qq.com</span></div>
 	<div className="main-text-container">
 	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
