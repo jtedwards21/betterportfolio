@@ -91,20 +91,24 @@ var Portfolio = React.createClass({
   },
   showAbout(){
     console.log("show About");
+    $("#background").css("z-index","3");
+    $("#background").animate({
+	opacity: .5
+    }, 1000);
   },
   render() {
     var content;
     
     switch(this.state.page){
       case "main":
-        content = <Main showAbout={this.showAbout} about={this.state.about} />;
+        content = <Main handleArrowClick={this.handleArrowClick} showAbout={this.showAbout} about={this.state.about} />;
 	break;
       case "projects":
 	content = <Projects showAbout={this.showAbout} />;
 	break;
     }
 
-    return(<div id="portfolio">{content}<div className="down-arrow"　onClick={this.handleArrowClick}><i className="fa fa-arrow-down"></i></div></div>)
+    return(<div id="portfolio">{content}</div>)
   }
 
 })
@@ -113,15 +117,22 @@ var Main = React.createClass({
   getInitialState(){
     return{}
   },
+  nameClick(){
+    console.log('clicked');
+  },
+  emailClick(){
+    window.location.href='mailto:1478282482@qq.com';
+  },
   render(){
      return(
      <div className="main">
 	<div className="left-vertical-text"><span onClick={this.props.showAbout}>{(this.props.about) ?　"close" : "about"}</span></div>
-	<div className="right-vertical-text"><span onClick={function(){window.location.href='mailto:1478282482@qq.com';}}>1478282482@qq.com</span></div>
+	<div className="right-vertical-text"><span onClick={this.emailClick}>1478282482@qq.com</span></div>
 	<div className="main-text-container">
-	  <div className="name"　onClick={function(){console.log('d')}}>Joshua Edwards</div>
+	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
 	  <div className="post">DIGITAL DESIGNER</div>
 	</div>
+	<img className="down-arrow" src="public/img/triangle.png"　onClick={this.props.handleArrowClick} />
      </div>
 	)
   }
