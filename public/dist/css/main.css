@@ -1,0 +1,9 @@
+.recipe-title {
+  font-size: 3em;
+}
+
+.show-ingredient {
+  display: -ms-flexbox;
+  display: flex;
+}
+
