@@ -6,6 +6,14 @@ body {
   position: absolute;
 }
 
+.up-arrow {
+  position: fixed;
+  width: 1em;
+  top: 2vh;
+  left: 49vw;
+  cursor: pointer;
+}
+
 .projects {
   background-color: black;
   position: absolute;
@@ -22,6 +30,8 @@ body {
   margin-top: 20vh;
   margin-left: 10vw;
 }
+
+
 
 .text-container {
   display: block;
@@ -141,7 +151,7 @@ body {
   transform: rotate(270deg);
   transform-origin: left top 0;
   float: none;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 50vh;
   color: black;
@@ -154,7 +164,7 @@ body {
   transform: rotate(90deg);
   transform-origin: left top 0;
   float: none;
-  position: absolute;
+  position: fixed;
   left: 98vw;
   top: 40vh;
 }

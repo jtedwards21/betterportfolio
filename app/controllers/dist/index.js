@@ -33,11 +33,6 @@ var Projects = React.createClass({
     
     return (
       <div className="projects">
-　　　　　　　　<section className="intro-page">
-	  <div>
-	    Please Enjoy the portfolio page
-	  </div>
-	</section>
 	<section className="panel">
         　　<div className="spacer s2"></div>
           <div id="trigger1" className="spacer s0"></div>
@@ -132,6 +127,7 @@ var Portfolio = React.createClass({
      var leftText = "about";
      var leftClick;
      var textColor;
+     var triangleUp;
      switch(this.state.about){
        case true:
 	 leftText = "close";
@@ -142,12 +138,22 @@ var Portfolio = React.createClass({
 	 leftClick = this.showAbout;
 	 break;
      }
+
      switch(this.checkTextColor()){
 	case "white":
           textColor = {color: "white"}
 	  break;
 	case "black":
 	  textColor = {color: "black"}
+	  break;
+     }
+     
+     switch(this.state.page){
+	case "main":
+          triangleUp = [];
+	  break;
+	case "projects":
+	  triangleUp = <TopTriangle />
 	  break;
      }
 
@@ -174,6 +180,7 @@ var Portfolio = React.createClass({
       <div id="portfolio">
 　　　　     {content}
       </div>
+      {triangleUp}
       {leftButton}
       {rightButton}
       {about}
@@ -181,6 +188,15 @@ var Portfolio = React.createClass({
     )
   }
 
+})
+
+var TopTriangle = React.createClass({
+  getInitialState(){
+    return {}
+  },
+  render(){
+    return(<div className="top-triangle-container"><img className="up-arrow" src="public/img/triangle-up.png"　onClick={this.props.handleUpArrowClick} /></div>)
+  }
 })
 
 var LeftText = React.createClass({
