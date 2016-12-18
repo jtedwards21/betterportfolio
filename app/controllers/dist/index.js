@@ -121,7 +121,7 @@ var Portfolio = React.createClass({
     $("#about").css("z-index", "4");
     $("#about").show(1000)
   },
-  checkLeftStyle(){
+  checkTextColor(){
     if(this.state.page == "projects"){return "white"}
     if(this.state.page == "main" && this.state.about == false){return "black"}
     if(this.state.page == "main" && this.state.about == true){return "white"}
@@ -131,7 +131,7 @@ var Portfolio = React.createClass({
     
      var leftText = "about";
      var leftClick;
-     var leftStyle;
+     var textColor;
      switch(this.state.about){
        case true:
 	 leftText = "close";
@@ -142,12 +142,12 @@ var Portfolio = React.createClass({
 	 leftClick = this.showAbout;
 	 break;
      }
-     switch(this.checkLeftStyle()){
+     switch(this.checkTextColor()){
 	case "white":
-          leftStyle = {color: "white"}
+          textColor = {color: "white"}
 	  break;
 	case "black":
-	  leftStyle = {color: "black"}
+	  textColor = {color: "black"}
 	  break;
      }
 
@@ -155,7 +155,8 @@ var Portfolio = React.createClass({
      
     console.log(this.state.about);
     var content;
-    var leftButton = <LeftText closeAbout={leftClick} leftText={leftText} leftStyle={leftStyle} />;
+    var leftButton = <LeftText closeAbout={leftClick} leftText={leftText} leftStyle={textColor} />;
+　　　 var rightButton = <RightText rightStyle={textColor} />
     var about = <About /> 
     
     switch(this.state.page){
@@ -174,6 +175,7 @@ var Portfolio = React.createClass({
 　　　　     {content}
       </div>
       {leftButton}
+      {rightButton}
       {about}
     </div>
     )
@@ -190,6 +192,18 @@ var LeftText = React.createClass({
   }
 })
 
+var RightText = React.createClass({
+  getInitialState(){
+    return {}
+  },
+  emailClick(){
+    window.location.href='mailto:1478282482@qq.com';
+  },
+  render(){
+    return(<div style={this.props.rightStyle} className="right-vertical-text"><span onClick={this.emailClick}>1478282482@qq.com</span></div>)
+  }
+})
+
 var Main = React.createClass({
   getInitialState(){
     return{}
@@ -197,14 +211,11 @@ var Main = React.createClass({
   nameClick(){
     console.log('clicked');
   },
-  emailClick(){
-    window.location.href='mailto:1478282482@qq.com';
-  },
   render(){
      return(
      <div className="main">
 	
-	<div className="right-vertical-text"><span onClick={this.emailClick}>1478282482@qq.com</span></div>
+	
 	<div className="main-text-container">
 	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
 	  <div className="post">DIGITAL DESIGNER</div>
