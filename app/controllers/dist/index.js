@@ -25,18 +25,23 @@ var Projects = React.createClass({
   panelLeft(){
     var that = this;
     if(this.state.panelNo !== 0){
-      $(".pin-box").slideUp(1000);
+      $(".pin-box").animate({opacity: 0},500);
         var panelNo = this.state.panelNo;
         setTimeout(function(){
 	  that.setState({panelNo: panelNo - 1});
-	  $(".pin-box").slideDown(1000);
-	}, 1000);
+	  $(".pin-box").animate({opacity: 1},500);
+	}, 500);
     }
   },
   panelRight(){
+    var that = this;
     if(this.state.panelNo !== this.state.panels.length - 1){
-      var panelNo = this.state.panelNo;
-      this.setState({panelNo: panelNo + 1});
+      $(".pin-box").animate({opacity: 0},500);
+        var panelNo = this.state.panelNo;
+        setTimeout(function(){
+	  that.setState({panelNo: panelNo + 1});
+	  $(".pin-box").animate({opacity: 1},500);
+	}, 500);
     }
   },
   render() {
