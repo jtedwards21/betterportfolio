@@ -21,9 +21,17 @@ var Projects = React.createClass({
 　　getInitialState(){
 	return{panelNo: 0, panels: this.props.panels}
   },
-  changePanelNo(){
-    var panelNo = this.state.panelNo;
-    this.setState({panelNo: panelNo + 1});
+  panelLeft(){
+    if(this.state.panelNo !== 0){
+      var panelNo = this.state.panelNo;
+      this.setState({panelNo: panelNo - 1});
+    }
+  },
+  panelRight(){
+    if(this.state.panelNo !== this.state.panels.length - 1){
+      var panelNo = this.state.panelNo;
+      this.setState({panelNo: panelNo + 1});
+    }
   },
   render() {
 
@@ -32,6 +40,7 @@ var Projects = React.createClass({
     return (
       <div className="projects">
 	{panel}
+	<div className="arrow-container"><div onClick={this.panelLeft} className="arrow-left"></div><div onClick={this.panelRight} className="arrow-right">sdafd</div></div>
       </div>
     );
   }

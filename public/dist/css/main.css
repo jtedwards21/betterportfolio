@@ -6,6 +6,34 @@ body {
   position: absolute;
 }
 
+.arrow-container {
+  position: absolute;
+  top: 3vh;
+  left: 77vw;
+  display: flex;
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-radius: 20px;
+  border-left: 30px solid white;
+  cursor: pointer;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent; 
+  border-radius: 20px;
+  border-right:30px solid white; 
+  margin-right: 3px;
+  cursor: pointer;
+}
+
 .up-arrow {
   position: fixed;
   width: 1em;
@@ -13,6 +41,14 @@ body {
   left: 49vw;
   cursor: pointer;
 }
+
+
+#number-display span {
+
+  transform: rotate(45deg);
+  transform-origin: left top 0;
+}
+
 
 .projects {
   background-color: black;
