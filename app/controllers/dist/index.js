@@ -4,6 +4,7 @@ var Panel = React.createClass({
 	return null;
   },
 　　render() {
+	
 return (
 	<div className="panel">
 	  <div id="pin1" className="pin">
@@ -22,9 +23,14 @@ var Projects = React.createClass({
 	return{panelNo: 0, panels: this.props.panels}
   },
   panelLeft(){
+    var that = this;
     if(this.state.panelNo !== 0){
-      var panelNo = this.state.panelNo;
-      this.setState({panelNo: panelNo - 1});
+      $(".pin-box").slideUp(1000);
+        var panelNo = this.state.panelNo;
+        setTimeout(function(){
+	  that.setState({panelNo: panelNo - 1});
+	  $(".pin-box").slideDown(1000);
+	}, 1000);
     }
   },
   panelRight(){
