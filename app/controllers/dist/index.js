@@ -1,80 +1,47 @@
 
+var Panel = React.createClass({
+　　getInitialState(){
+	return null;
+  },
+　　render() {
+return (
+	<div className="panel">
+	  <div id="pin1" className="pin">
+	    <div className="pin-box">
+	      <div className="project-title">{this.props.name}</div>
+	      <img src={this.props.imageSrc} className="portfolio-image" />
+	    </div>
+	  </div>
+	</div>
+     );
+  }
+});
 
 var Projects = React.createClass({
 　　getInitialState(){
-	return{}
+	return{panelNo: 0, panels: this.props.panels}
   },
-  makeSlides(){
-    
-    var controller = new ScrollMagic.Controller({
-      globalSceneOptions: {
-	 triggerHook: 'onLeave'
-      }
-    });
-
-    var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 500})
-	.setPin("#Pin1")
-	.addTo(controller);
-    var sceneTwo = new ScrollMagic.Scene({triggerElement: "#trigger2", duration:500})
-	.setPin("#Pin2")
-	.addTo(controller);
-    var sceneThree = new ScrollMagic.Scene({triggerElement: "#trigger3", duration:500})
-	.setPin("#Pin3")
-	.addTo(controller);
-
-  },
-  componentDidMount(){
-    this.makeSlides();
-  },
-  showAbout(){
-    this.props.showAbout();
+  changePanelNo(){
+    var panelNo = this.state.panelNo;
+    this.setState({panelNo: panelNo + 1});
   },
   render() {
+
+    var panel = <Panel imageSrc={this.state.panels[this.state.panelNo].imageSrc} name={this.state.panels[this.state.panelNo].name} />
     
     return (
       <div className="projects">
-	<section className="panel">
-        　　<div className="spacer s2"></div>
-          <div id="trigger1" className="spacer s0"></div>
-	  <div id="pin1" className="pin">
-		<div className="pin-box">
-		　　<div className="project-title">Pomodoro</div>
-		  <img src="public/img/project-one.png" className="portfolio-image" />
-	　　　　　　　　</div>
-	  </div>
-        　　<div classNmae="spacer s2"></div>
-	</section>
-	<section className="panel">
-            <div className="spacer s2"></div>
-          <div id="trigger2" className="spacer s0"></div>
-	  <div id="pin2" className="pin">
-		<div className="pin-box">
-		　　<div className="project-title">Calculator</div>
-		  <img src="public/img/project-two.png" className="portfolio-image" />
-	　　　　　　　　</div>
-	  </div>
-        　　<div classNmae="spacer s2"></div>
-	</section>
-	<section className="panel">
-            <div className="spacer s2"></div>
-          <div id="trigger3" className="spacer s0"></div>
-	  <div id="pin3" className="pin">
-		<div className="pin-box">
-		　　<div className="project-title">Dogs</div>
-		  <img src="public/img/project-three.png" className="portfolio-image" />
-	　　　　　　　　</div>
-	  </div>
-        　　<div classNmae="spacer s2"></div>
-	</section>
+	{panel}
       </div>
     );
   }
 });
 
 
+
 var Portfolio = React.createClass({
 　　getInitialState(){
-	return{about: false, page: "main"}
+	return{about: false, page: "main", panels: this.props.panels}
   },
   handleArrowClick(){
     var that = this;
@@ -184,10 +151,10 @@ var Portfolio = React.createClass({
     
     switch(this.state.page){
       case "main":
-        content = <Main handleArrowClick={this.handleArrowClick} showAbout={this.showAbout} about={this.state.about} />;
+        content = <Main handleArrowClick={this.handleArrowClick} />;
 	break;
       case "projects":
-	content = <Projects showAbout={this.showAbout} />;
+	content = <Projects panels={this.state.panels} />;
 	break;
     }
 
@@ -281,7 +248,9 @@ var About = React.createClass({
 
 })
 
+var panels = [{name: "Pomodoro", imageSrc: "public/img/project-one.png"}, {name: "Calculator", imageSrc: "public/img/project-two.png"}, {name: "Weather App", imageSrc: "public/img/project-three.png"}]
+
 ReactDOM.render(
-  <Portfolio />,
+  <Portfolio panels={panels}/>,
   document.getElementById('container')
 )
