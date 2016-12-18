@@ -77,12 +77,29 @@ var Portfolio = React.createClass({
 	return{about: false, page: "main"}
   },
   handleArrowClick(){
+    var that = this;
     switch(this.state.page){
       case "main":
-        this.setState({page: "projects"});
+	$("#background").css("z-index", "10");
+	$("#background").animate({
+	  opacity: 1
+	}, 1000, function(){that.setState({page: "projects"});})
+        
+	$("#background").animate({
+	  opacity: 0
+	}, 1000, function(){
+	$("#background").css("z-index", "0");})
 	break;
       case "projects":
-	this.setState({page: "main"});
+	$("#background").css("z-index", "10");
+	$("#background").animate({
+	  opacity: 1
+	}, 1000, function(){that.setState({page: "main"});})
+        
+	$("#background").animate({
+	  opacity: 0
+	}, 1000, function(){
+	$("#background").css("z-index", "0");})
 	break;
     }
   },
@@ -153,7 +170,7 @@ var Portfolio = React.createClass({
           triangleUp = [];
 	  break;
 	case "projects":
-	  triangleUp = <TopTriangle />
+	  triangleUp = <TopTriangle handleArrowClick={this.handleArrowClick} />
 	  break;
      }
 
@@ -195,7 +212,7 @@ var TopTriangle = React.createClass({
     return {}
   },
   render(){
-    return(<div className="top-triangle-container"><img className="up-arrow" src="public/img/triangle-up.png"　onClick={this.props.handleUpArrowClick} /></div>)
+    return(<div className="top-triangle-container"><img className="up-arrow" src="public/img/triangle-up.png"　onClick={this.props.handleArrowClick} /></div>)
   }
 })
 
