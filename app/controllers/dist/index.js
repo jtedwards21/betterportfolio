@@ -268,7 +268,7 @@ var About = React.createClass({
 
 })
 
-var panels = [{name: "ScatterPlot", imageSrc: "public/img/scatterplot.png"}, {name: "Quote Generator", imageSrc: "public/img/quotegenerator.png"},{name: "Calculator", imageSrc: "public/img/calculator.png"}, {name: "Simon", imageSrc: "public/img/simon.png"}]
+var panels = [{name: "ScatterPlot", imageSrc: "public/img/scatterplot.png"}, {name: "Quote Generator", imageSrc: "public/img/quotegenerator.png"},{name: "Calculator", imageSrc: "public/img/calculator.png"}, {name: "Simon", imageSrc: "public/img/simon.png"}, {name: "Weather App", imageSrc: "public/img/weatherapp.png"}, {name: "pomodoro", imageSrc: "pomodoro.png"}]
 
 ReactDOM.render(
   <Portfolio panels={panels}/>,
