@@ -256,7 +256,7 @@ var Main = React.createClass({
 	
 	<div className="main-text-container">
 	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
-	  <div className="post">DIGITAL DESIGN</div>
+	  <div className="post">FRONTEND DEVELOPMENT</div>
 	</div>
 	<img className="down-arrow" src="public/img/triangle.png"　onClick={this.props.handleArrowClick} />
      </div>
