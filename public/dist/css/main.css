@@ -70,6 +70,12 @@ body {
   margin-left: 10vw;
 }
 
+#about img {
+  width: 200px;
+  border-radius: 5px;
+  display: block;
+}
+
 
 
 .text-container {
@@ -271,6 +277,8 @@ body {
 .plain-text {
   font-family: Gza;
   color: white;
+  display: block;
+  font-size: 2em;
 
 }
 

@@ -276,8 +276,10 @@ var About = React.createClass({
 	  <div id="about">
             <div className="title">Hello,</div>
             <div className="text-container">
-            <span className="sub-title">we are a web development firm</span>
-            <span className="plain-text">Here are some of our awards and other stuff</span>
+            <span className="sub-title">I am currently doing the front-end development section of free code camp.</span>
+            <span className="plain-text">This page includes some of the projects from the course.</span>
+	    <span className="plain-text">Add me on WeChat</span>
+	    <img src="public/img/wechat.png"/>
 	    </div>
           </div>
         )
