@@ -7,10 +7,13 @@ body {
 }
 
 .arrow-container {
-  position: absolute;
-  top: 3vh;
-  left: 77vw;
   display: flex;
+  bottom: 0;
+  width: 52px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  margin-top: 30px;
 }
 
 .arrow-right {
@@ -38,7 +41,7 @@ body {
   position: fixed;
   width: 1em;
   top: 2vh;
-  left: 49vw;
+  left: 50vw;
   cursor: pointer;
 }
 
@@ -123,8 +126,10 @@ body {
 }
 
 .portfolio-image {
-  height: 100%;
-  width: 100%;
+  width: 90%;
+  border-radius: 16px;
+  margin-left: 5%;
+  float: none;
 }
 
 .project-title {
@@ -135,13 +140,24 @@ body {
 }
 
 .pin-box {
-  width: 45vw;
-  height: 50vh;
   float: none;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
+　　cursor: pointer;
+  background-color: #7F0000;
+  padding-bottom: 50px;
+  padding-top: 30px;
+  border-radius :16px;
 }
 
+.pin-box img {
+　　cursor: pointer;
+}
+
+.pin-box div {
+　　cursor: pointer;
+}
 
 .down-arrow {
   width: 1em;

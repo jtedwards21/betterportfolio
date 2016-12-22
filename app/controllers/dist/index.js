@@ -3,16 +3,22 @@ var Panel = React.createClass({
 　　getInitialState(){
 	return null;
   },
+  redirect(){
+    console.log('click');
+    var l = this.props.url;
+    window.location = l;
+  },
 　　render() {
-	
+    var s = {cursor: "pointer"};
 return (
 	<div className="panel">
 	  <div id="pin1" className="pin">
-	    <div className="pin-box">
+	    <div className="pin-box" style={s} onClick={this.redirect}>
 	      <div className="project-title">{this.props.name}</div>
 	      <img src={this.props.imageSrc} className="portfolio-image" />
 	    </div>
 	  </div>
+	  <div className="arrow-container"><div onClick={this.props.panelLeft} className="arrow-left"></div><div onClick={this.props.panelRight} className="arrow-right"></div></div>
 	</div>
      );
   }
@@ -45,13 +51,14 @@ var Projects = React.createClass({
     }
   },
   render() {
+    var curr = this.state.panels[this.state.panelNo];
 
-    var panel = <Panel imageSrc={this.state.panels[this.state.panelNo].imageSrc} name={this.state.panels[this.state.panelNo].name} />
+    var panel = <Panel panelLeft={this.panelLeft} url={curr.url} panelRight={this.panelRight} imageSrc={this.state.panels[this.state.panelNo].imageSrc} name={this.state.panels[this.state.panelNo].name} />
     
     return (
       <div className="projects">
 	{panel}
-	<div className="arrow-container"><div onClick={this.panelLeft} className="arrow-left"></div><div onClick={this.panelRight} className="arrow-right">sdafd</div></div>
+	
       </div>
     );
   }
@@ -62,6 +69,17 @@ var Projects = React.createClass({
 var Portfolio = React.createClass({
 　　getInitialState(){
 	return{about: false, page: "main", panels: this.props.panels}
+  },
+  handleKey(e){
+    console.log(e);
+    if(e.key == "ArrowDown" && this.state.page == "main"){
+	this.handleArrowClick()
+    } else if(e.key == "ArrowUp" && this.state.page == "projects"){
+	this.handleArrowClick();
+    }
+  },
+  componentDidMount(){
+    window.addEventListener('keydown', this.handleKey);
   },
   handleArrowClick(){
     var that = this;
@@ -238,7 +256,7 @@ var Main = React.createClass({
 	
 	<div className="main-text-container">
 	  <div className="name"　onClick={this.nameClick}>Joshua Edwards</div>
-	  <div className="post">DIGITAL DESIGNER</div>
+	  <div className="post">DIGITAL DESIGN</div>
 	</div>
 	<img className="down-arrow" src="public/img/triangle.png"　onClick={this.props.handleArrowClick} />
      </div>
@@ -268,7 +286,7 @@ var About = React.createClass({
 
 })
 
-var panels = [{name: "ScatterPlot", imageSrc: "public/img/scatterplot.png"}, {name: "Quote Generator", imageSrc: "public/img/quotegenerator.png"},{name: "Calculator", imageSrc: "public/img/calculator.png"}, {name: "Simon", imageSrc: "public/img/simon.png"}, {name: "Weather App", imageSrc: "public/img/weatherapp.png"}, {name: "pomodoro", imageSrc: "pomodoro.png"}]
+var panels = [{name: "ScatterPlot", url: "https://scatterplot78.herokuapp.com/", imageSrc: "public/img/scatterplot.png"}, {name: "Quote Generator", url:"https://quotegenerator78.herokuapp.com/", imageSrc: "public/img/quotegenerator.png"},{name: "Calculator", url:"https://calculator78.herokuapp.com/", imageSrc: "public/img/calculator.png"}, {name: "Simon", url:"https://simon788.herokuapp.com/", imageSrc: "public/img/simon.png"}, {name: "Weather App", url:"https://weatherapp788.herokuapp.com/", imageSrc: "public/img/weatherapp.png"}, {name: "pomodoro", url:"https://pomodoro78.herokuapp.com/", imageSrc: "public/img/pomodoro.png"}]
 
 ReactDOM.render(
   <Portfolio panels={panels}/>,
